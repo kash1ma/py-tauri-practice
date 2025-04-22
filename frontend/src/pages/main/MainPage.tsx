@@ -1,7 +1,8 @@
 const MainPage = () => {
   return (
     <div>
-      <p>maon page</p>
+      <p style={{textAlign: "center", fontSize: 60 , color: "#ea7c69"}}>Список</p>
+      
     </div>
   );
 };
