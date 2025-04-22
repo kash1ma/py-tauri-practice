@@ -1,11 +1,7 @@
-import styles from './ErrorPage.module.css'
+import styles from "./ErrorPage.module.css";
 
 const ErrorPage = () => {
-  return (
-    <div className={styles.error_container}>
-      Ошибка 404
-    </div>
-  )
-}
+  return <div className={styles.error_container}>Ошибка 404</div>;
+};
 
-export default ErrorPage
+export default ErrorPage;

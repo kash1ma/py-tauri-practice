@@ -1,11 +1,9 @@
-
-
 const MainPage = () => {
   return (
     <div>
-    <p>maon page</p>
+      <p>maon page</p>
     </div>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;
