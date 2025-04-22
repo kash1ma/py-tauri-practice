@@ -1,13 +1,14 @@
 import "./App.css";
+import Button from "./ui/Button/Button";
+
 
 function App() {
 
 
   return (
     <>
-    <p>
-asdasdsadasdasd
-    </p>
+    <h1>asdasd</h1>
+    <Button text="СКАЗАТЬ ПРИВЕТ ВСЕМ"/>
     </>
   );
 }
