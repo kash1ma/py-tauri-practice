@@ -1,13 +1,11 @@
 @keyframes showModal {
-    0% {
-        opacity: 0;
-    } 50% {
-        opacity: 0.5;
-    } 100% {
-        opacity: 1;
-    }
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
-
 
 .modalOverlay {
   position: fixed;
@@ -32,12 +30,12 @@
 
 .modalContainer {
   background: #fff;
-  width: 400px;
+  width: 800px;
   height: 80vh;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
   position: relative;
   border-radius: 10px;
-  animation: showModal 1s ease-in;
+  animation: showModal 0.5s ease-in;
 }
 
 .open .modalContainer {
@@ -52,4 +50,3 @@
   font-size: 50px;
   cursor: pointer;
 }
-

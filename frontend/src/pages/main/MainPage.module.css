@@ -1,0 +1,9 @@
+.pizza_container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 69%;
+    gap: 50px;
+}
