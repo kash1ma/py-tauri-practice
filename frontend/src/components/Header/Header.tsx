@@ -2,11 +2,15 @@ import style from "./Header.module.css";
 import Button from "../../ui/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ModalCart from "../modalCart/ModalCart";
+import ModalCart from "../ModalWindow/ModalWindow";
+import { useSelector} from "react-redux";
+import { selectCartCount } from "../../features/cart/cartSlice";
+import CartModalContent from "../ModalWindow/ModalContent/CartModalContent/CartModalContent";
 
 const Header = () => {
   const navigate = useNavigate();
   const [isOpenCartModal, setisOpenCartModal] = useState(false);
+  const cartCount = useSelector(selectCartCount)
 
   return (
     <>
@@ -31,12 +35,11 @@ const Header = () => {
           </li>
          
             <li>
-              <Button text="Корзина" onClick={() => setisOpenCartModal(true)} />
+              <Button text={`Корзина ${cartCount}`} onClick={() => setisOpenCartModal(true)} />
             </li>
-         
         </ul>
       </nav>
-      {isOpenCartModal && (<ModalCart isOpen={isOpenCartModal} onClose={() => setisOpenCartModal(false)}/>)}
+      {isOpenCartModal && (<ModalCart size="small" isOpen={isOpenCartModal} onClose={() => setisOpenCartModal(false)} children={<CartModalContent />}/>)}
     </>
   );
 };
