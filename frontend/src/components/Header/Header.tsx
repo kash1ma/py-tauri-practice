@@ -19,7 +19,7 @@ const Header = () => {
           otherButtonStyles={{
             backgroundColor: "transparent",
             marginLeft: 40,
-            fontSize: 30,
+            fontSize: 10,
           }}
           onClick={() => navigate("/pizzaList")}
           text="Our Pizza App"
