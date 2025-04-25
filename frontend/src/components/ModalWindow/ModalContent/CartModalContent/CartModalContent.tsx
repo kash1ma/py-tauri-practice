@@ -6,6 +6,8 @@ import {
 import Button from "../../../../ui/Button/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../../app/store";
+import Input from "../../../../ui/Input/Input";
+import { TypesInput } from "../../../../types/enums/InputEnums";
 
 const CartModalContent = () => {
   const items = useSelector((state: RootState) => state.cart.items);
@@ -22,9 +24,9 @@ const CartModalContent = () => {
               text="удалить"
               onClick={() => dispatch(removeFromCart(item.id))}
             />
-            <input
-              type="number"
-              value={item.quantity}
+            <Input
+              type={TypesInput.NUMBER}
+              initialValue={item.quantity}
               onChange={(e) =>
                 dispatch(
                   updateQuantity({
@@ -33,7 +35,6 @@ const CartModalContent = () => {
                   })
                 )
               }
-              min={1}
             />
           </li>
         ))}
