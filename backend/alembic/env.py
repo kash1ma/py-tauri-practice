@@ -2,6 +2,8 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config, pool
 from alembic import context
+import os
+
 
 from app.models import (
     Base,
@@ -16,6 +18,9 @@ from app.models import (
 
 # Alembic Config
 config = context.config
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL:
+    config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
 # Логирование
 if config.config_file_name is not None:
