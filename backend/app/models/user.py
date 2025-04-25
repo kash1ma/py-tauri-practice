@@ -4,12 +4,13 @@ from app.db.base import Base
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
+
     email = Column(String, unique=True, index=True)
     phone = Column(String, unique=True, index=True)
     username = Column(String)
     password_hash = Column(String)
     role = Column(String)
-    
+
     orders = relationship("Order", back_populates="owner")
 
 class Pizza(Base):
@@ -63,3 +64,8 @@ class Delivery(Base):
     dispatched_at = Column(TIMESTAMP)
     delivered_at = Column(TIMESTAMP)
     status = Column(String)  # "waiting", "on_the_way", "delivered"
+    email = Column(String, unique=True, index=True, nullable=False)
+    phone = Column(String, unique=True, index=True, nullable=False)
+    username = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    role = Column(String, default="user")
