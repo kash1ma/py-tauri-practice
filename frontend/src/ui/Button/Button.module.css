@@ -1,26 +1,11 @@
 .button {
-  color: #ea7c69;
-  background-color: #1f1d2b;
+  color: white;
+  background-color: black;
+  padding: 10px;
   font-size: 15px;
-  padding: 4px;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 5px;
-}
-
-@keyframes myscale {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.button:hover {
   cursor: pointer;
-  animation: myscale 3s infinite;
-  color: #ea7c69;
 }
+
+
