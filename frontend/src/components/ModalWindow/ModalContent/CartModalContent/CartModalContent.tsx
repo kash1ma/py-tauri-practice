@@ -20,11 +20,15 @@ const CartModalContent = () => {
         {items.map((item) => (
           <li key={item.id}>
             {item.name} - {item.price}₽ x {item.quantity}
+            {console.log(item) as any}
+            <br />
+            Размер: {item.size} см
             <Button
               text="удалить"
               onClick={() => dispatch(removeFromCart(item.id))}
             />
             <Input
+            min={1}
               type={TypesInput.NUMBER}
               initialValue={item.quantity}
               onChange={(e) =>
@@ -34,6 +38,7 @@ const CartModalContent = () => {
                     quantity: Number(e.target.value),
                   })
                 )
+                
               }
             />
           </li>
