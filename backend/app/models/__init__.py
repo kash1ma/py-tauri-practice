@@ -1,4 +1,4 @@
-from backend.app.db.base import Base
+from app.db.base import Base
 from .user import User
 from .pizza import Pizza
 from .ingredient import Ingredient
