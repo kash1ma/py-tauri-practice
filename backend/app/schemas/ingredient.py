@@ -8,4 +8,4 @@ class IngredientCreate(IngredientBase):
     pass
 
 class IngredientRead(IngredientBase):
-    name: srt
+    name: str

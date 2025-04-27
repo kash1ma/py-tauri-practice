@@ -1,20 +1,20 @@
 from datetime import datetime
 from pydantic   import BaseModel, ConfigDict, Field
 
-class DeleveryBase(BaseModel):
+class DeliveryBase(BaseModel):
     order_id: int
     address: str
     delivery_type: str
-    courier_name: srt
+    courier_name: str
     phone: str
     dispatched_at: datetime
     delivered_at: datetime
     status: str
 
-class DeliveryCreate(DeleveryBase):
+class DeliveryCreate(DeliveryBase):
     pass
 
-class DeliveryRead(DeleveryBase):
+class DeliveryRead(DeliveryBase):
     id: int
 
     class Config:

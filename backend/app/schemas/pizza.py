@@ -1,18 +1,18 @@
 from typing import Optional
 from pydantic import BaseModel
 
-class PizaaBase(BaseModel):
+class PizzaBase(BaseModel):
     name: str
     description: str
     price_cents: int
 
-class PizzaCreate(PizaaBase):
+class PizzaCreate(PizzaBase):
     pass
 
-class PizzaUpdate(PizaaBase):
+class PizzaUpdate(PizzaBase):
     id: int
 
-class PizzaInDBBase(PizaaBase):
+class PizzaInDBBase(PizzaBase):
     id: int
 
     class Config:
