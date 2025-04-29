@@ -10,6 +10,7 @@ import useInput from "../../../../hooks/useInput";
 import Select from "../../../../ui/Select/Select";
 import { useMemo } from "react";
 import { CartItem } from "../../../../features/cart/types";
+import handleCloseModal from "../../../../helpers/closeModal";
 
 type IPizzaModalContentProps = {
   pizza: IPizza;
@@ -19,6 +20,7 @@ type IPizzaModalContentProps = {
 const PizzaModalContent: FC<IPizzaModalContentProps> = ({ pizza, img }) => {
   const quantity = useInput(1);
   const [currentSize, setCurrentSize] = useState(25);
+
   
   const dispatch = useDispatch();
   const options = [
@@ -34,7 +36,7 @@ const PizzaModalContent: FC<IPizzaModalContentProps> = ({ pizza, img }) => {
       price: price,
       size: currentSize,
       quantity: Number(quantity.value),
-      id: String(pizza.id)
+      id: pizza.name + currentSize
     };
     
     dispatch(addToCart(pizzaToAdd));
@@ -72,7 +74,7 @@ const PizzaModalContent: FC<IPizzaModalContentProps> = ({ pizza, img }) => {
       />
       <Button
         text="добавить в корзину"
-        onClick={handleAddToCart}
+        onClick={() =>{handleAddToCart();handleCloseModal()}}
       />
     </div>
   );

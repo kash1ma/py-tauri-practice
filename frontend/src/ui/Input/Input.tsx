@@ -15,7 +15,7 @@ const Input: FC<IInputProps> = ({initialValue, type, onChange, min}) => {
 
   return (
     <div>
-        <input type={type} min={min} onChange={onChange} value={initialValue} />
+        <input className={styles.input} type={type} min={min} onChange={onChange} value={initialValue} />
     </div>
   )
 }
