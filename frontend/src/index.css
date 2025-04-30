@@ -25,10 +25,10 @@ body {
 
 @font-face {
     font-family: Manrope-Bold;
-    src: url("./fonts/Manrope-Bold.ttf");
+    src: url("./fonts/Manrope-Bold.woff2");
 }
 
 @font-face {
     font-family: Manrope-Regular;
-    src: url("./fonts/Manrope-Regular.ttf");
+    src: url("./fonts/Manrope-Regular.woff2");
 }

@@ -47,6 +47,8 @@ const CartModalContent = () => {
                 let value = Number(e.target.value);
                 if (value === 0) {
                   value = 1;
+                } else if(value > 20){
+                  value = 20
                 } else {
                   dispatch(
                     updateQuantity({

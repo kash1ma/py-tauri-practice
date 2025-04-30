@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import Button from "../../../../ui/Button/Button";
 import { IPizza } from "../../../../fakedata/data";
 import styles from "./PizzaModalContent.module.css";
-import Input from "../../../../ui/Input/Input";
-import { TypesInput } from "../../../../types/enums/InputEnums";
 import useInput from "../../../../hooks/useInput";
 import Select from "../../../../ui/Select/Select";
 import { useMemo } from "react";
@@ -74,24 +72,6 @@ const PizzaModalContent: FC<IPizzaModalContentProps> = ({ pizza, img }) => {
         onChange={(e) => setCurrentSize(Number(e.target.value))}
       />
       <p>Цена : {totalPrice}</p>
-      <Input
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          let value = Number(e.target.value);
-          if (value === 0) {
-            value = 1;
-          }
-          quantity.handleChange({
-            ...e,
-            target: {
-              ...e.target,
-              value: String(value),
-            },
-          });
-        }}
-        initialValue={quantity.value}
-        type={TypesInput.NUMBER}
-        min={1}
-      />
       <Button
         text="добавить в корзину"
         onClick={() => {

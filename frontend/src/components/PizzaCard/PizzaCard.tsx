@@ -2,8 +2,7 @@ import { FC, useState } from "react";
 import { IPizza } from "../../fakedata/data";
 import styles from "./PizzaCard.module.css";
 import Button from "../../ui/Button/Button";
-
-import Pizza from "../../assets/pizza.jpg"
+import Pizza from "../../assets/pizza.webp"
 import ModalWindow from "../ModalWindow/ModalWindow";
 import PizzaModalContent from "../ModalWindow/ModalContent/PizzaModalContent/PizzaModalContent.js"
 
