@@ -21,3 +21,10 @@ class UserLogin(BaseModel):
 
 class User(UserRead):
     pass
+
+class UserUpdate(BaseModel):
+    email: EmailStr
+    phone: str
+    username: str
+    role: str
+    password: str
