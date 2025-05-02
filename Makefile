@@ -18,11 +18,15 @@ backend-shell:
 	docker exec -it backend /bin/bash
 
 # Запуск миграций Alembic внутри backend-контейнера
-migrate:
+create-migration:
 	docker exec -it backend alembic upgrade head
 
 # Генерация новой миграции
 makemigration:
+	docker exec -it backend alembic revision --autogenerate -m "new migration"
+
+migration:
+	docker exec -it backend alembic upgrade head
 	docker exec -it backend alembic revision --autogenerate -m "new migration"
 
 # Тесты
