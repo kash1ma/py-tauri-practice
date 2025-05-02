@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, Text, ForeignKey, DateTime, create_engine
-from sqlalchemy.orm import relationship, declarative_base, sessionmaker
+from sqlalchemy import Column, Integer, ForeignKey
 from app.db.base import Base
 
 class PizzaIngredient(Base):
