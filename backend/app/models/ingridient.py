@@ -2,11 +2,7 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
-    Text,
-    ForeignKey,
-    create_engine,
 )
-from sqlalchemy.orm import relationship, declarative_base, sessionmaker
 from app.db.base import Base
 
 
