@@ -39,4 +39,4 @@ clean:
 	docker system prune -f
 
 lint-python:
-	autoflake --in-place  --remove-all-unused-imports --recursive ./backend
+	autoflake --in-place --remove-unused-variables --remove-all-unused-imports --recursive ./backend
