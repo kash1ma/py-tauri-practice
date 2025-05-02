@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Float, Text, ForeignKey, DateTime, create_engine
 from sqlalchemy.orm import relationship, declarative_base, sessionmaker
 from datetime import datetime
+from app.db.base import Base
 
-Base = declarative_base()
 
 class Ingredient(Base):
     __tablename__ = 'ingredient'
