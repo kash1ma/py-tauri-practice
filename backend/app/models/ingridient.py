@@ -1,0 +1,12 @@
+from sqlalchemy import Column, Integer, String, Float, Text, ForeignKey, DateTime, create_engine
+from sqlalchemy.orm import relationship, declarative_base, sessionmaker
+from datetime import datetime
+
+Base = declarative_base()
+
+class Ingredient(Base):
+    __tablename__ = 'ingredient'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    stock_quantity = Column(Integer, nullable=False)
