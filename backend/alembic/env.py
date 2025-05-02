@@ -8,12 +8,6 @@ import os
 from app.models import (
     Base,
     User,
-    Pizza,
-    Ingredient,
-    PizzaIngredient,
-    Order,
-    OrderItem,
-    Delivery
 )
 
 # Alembic Config
