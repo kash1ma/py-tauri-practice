@@ -13,4 +13,6 @@ class Order(Base):
     status = Column(String, nullable=False)
     payment_method = Column(String, nullable=False)
 
-    user = relationship("User", back_populates="orders")
+    user = relationship('User', back_populates='orders')
+    items = relationship('OrderItem', back_populates='order')
+    delivery = relationship('Delivery', uselist=False, back_populates='order')
