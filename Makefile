@@ -37,3 +37,6 @@ test:
 clean:
 	docker-compose down -v --remove-orphans
 	docker system prune -f
+
+lint-python:
+	autoflake --in-place  --remove-all-unused-imports --recursive ./backend
