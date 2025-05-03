@@ -1,20 +1,8 @@
 from logging.config import fileConfig
-
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 import os
-
-
-from app.models import (
-    Base,
-    User,
-    Pizza,
-    Ingredient,
-    PizzaIngredient,
-    Order,
-    OrderItem,
-    Delivery
-)
+from app.models import Base
 
 # Alembic Config
 config = context.config
