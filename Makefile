@@ -2,16 +2,16 @@
 
 # Запуск всех сервисов
 up:
-	docker-compose up --build
+	docker compose up --build
 
 # Остановка сервисов
 down:
-	docker-compose down
+	docker compose down
 
 # Перезапуск (с ребилдом)
 restart:
-	docker-compose down
-	docker-compose up --build
+	docker compose down
+	docker compose up --build
 
 # Запуск бэкенда в интерактивном режиме
 backend-shell:
@@ -35,7 +35,7 @@ test:
 
 # Очистка проекта
 clean:
-	docker-compose down -v --remove-orphans
+	docker compose down -v --remove-orphans
 	docker system prune -f
 
 lint-python:
