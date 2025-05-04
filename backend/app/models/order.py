@@ -1,17 +1,14 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-from sqlalchemy.orm import relationship
-from datetime import datetime
+from sqlalchemy import TIMESTAMP, Column, Integer, String, ForeignKey, func
 from app.db.base import Base
+from sqlalchemy.orm import relationship
 
 class Order(Base):
-    __tablename__ = 'order'
+    __tablename__ = "orders"
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    created_at = Column(TIMESTAMP, server_default=func.now())
+    status = Column(String)
+    payment_method = Column(String)
 
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    status = Column(String, nullable=False)
-    payment_method = Column(String, nullable=False)
-
-    user = relationship('User', back_populates='orders')
-    items = relationship('OrderItem', back_populates='order')
-    delivery = relationship('Delivery', uselist=False, back_populates='order')
+    user = relationship("User", back_populates="orders")
+    items = relationship("OrderItem", back_populates="order")
