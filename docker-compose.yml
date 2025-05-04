@@ -13,15 +13,6 @@ services:
     ports:
       - "8000:8000"
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend
-    volumes:
-      - ./frontend:/app
-    ports:
-      - "1420:1420"
 
   db:
     image: postgres:17

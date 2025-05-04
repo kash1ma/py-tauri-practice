@@ -1,11 +1,11 @@
 from app.db.base import Base
 from .user import User
 from .pizza import Pizza
-from .ingredient import Ingredient
-from .PizzaIngredient import PizzaIngredient
-from .Order import Order
-from .OrderItem import OrderItem
-from .Delivery import Delivery
+from .ingridient import Ingredient
+from .pizza_ingredient import PizzaIngredient
+from .order import Order
+from .order_item import OrderItem
+from .delivery import Delivery
 
 __all__ = [
     "Base",
