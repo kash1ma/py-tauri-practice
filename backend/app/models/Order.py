@@ -10,5 +10,5 @@ class Order(Base):
     status = Column(String)
     payment_method = Column(String)
 
-    owner = relationship("User", back_populates="orders")
+    user = relationship("User", back_populates="orders")
     items = relationship("OrderItem", back_populates="order")
