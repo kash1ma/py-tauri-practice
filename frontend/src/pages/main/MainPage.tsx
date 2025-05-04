@@ -8,7 +8,7 @@ const MainPage = () => {
   
   return (
     <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection: "column", width: "100%"}}>
-      <p style={{textAlign: "center", fontSize: 60 , color: "#ea7c69"}}>Список</p>
+      <p style={{textAlign: "center", fontSize: 60 , color: "#ea7c69"}}>Каталог</p>
       <div className={styles.pizza_container}>
       {pizzas.map((pizza) => (
        <PizzaCard key={pizza.id} pizza={pizza}/>
