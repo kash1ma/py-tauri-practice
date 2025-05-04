@@ -40,3 +40,8 @@ clean:
 
 lint-python:
 	autoflake --in-place --remove-unused-variables --remove-all-unused-imports --recursive ./backend
+
+# Команда для удаления старых миграций
+cleanup-migrations:
+	@echo "Удаляю старые миграции, если их больше 3..."
+	python backend/clear_migrate.py
