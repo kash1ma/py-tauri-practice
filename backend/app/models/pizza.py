@@ -1,10 +1,9 @@
-from sqlalchemy import Column, Integer, String, Float, Text
+from sqlalchemy import Column, Integer, String, Text
 from app.db.base import Base
 
 class Pizza(Base):
-    __tablename__ = 'pizza'
-
-    id = Column(Integer, primary_key=True)
+    __tablename__ = "pizzas"
+    id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     description = Column(Text)
-    price = Column(Float, nullable=False)
+    price_cents = Column(Integer, nullable=False)

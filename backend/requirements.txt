@@ -22,11 +22,6 @@ starlette==0.46.2
 typing-inspection==0.4.0
 typing_extensions==4.13.2
 uvicorn==0.34.2
-<<<<<<< HEAD
 python-jose==3.3.0
 passlib==1.7.4
 email-validator==2.1.0.post1
-=======
-Faker==37.1.0
-tzdata==2025.2
->>>>>>> main

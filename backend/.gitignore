@@ -1,9 +1,5 @@
 .env
 .env-example
-<<<<<<< HEAD
 alembic/**/__pycache__/
 *.py[cod]
 __pycache__/
-=======
-**/__pycache__/
->>>>>>> main
