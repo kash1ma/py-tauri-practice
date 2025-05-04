@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from sqlalchemy.orm import Session
 from app.models.user import User
-from app.schemas.user import UserCreate, UserLogin, UserRead
+from app.controllers.user_controller import UserCreate, UserLogin, UserRead
 from app.core.security import hash_password, verify_password, create_access_token, decode_access_token
 from app.db.session import get_db
 
@@ -24,7 +24,13 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return new_user
+    return UserRead(
+        id=new_user.id,
+        email=new_user.email,
+        phone=new_user.phone,
+        username=new_user.username,
+        role=new_user.role,
+    )
 
 @router.post("/login")
 def login(user: UserLogin, db: Session = Depends(get_db)):
@@ -53,4 +59,10 @@ def get_current_user(token: str, db: Session = Depends(get_db)):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="User not found",
         )
-    return user
+    return UserRead(
+        id=user.id,
+        email=user.email,
+        phone=user.phone,
+        username=user.username,
+        role=user.role,
+    )
