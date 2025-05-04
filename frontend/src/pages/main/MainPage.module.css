@@ -1,6 +1,36 @@
+
 .pizza_container {
     margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
+}
+
+
+
+@media (min-width: 1000px) and (max-width: 1599px) {
+    .pizza_container {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (min-width: 1600px) and (max-width: 1900px) {
+    .pizza_container {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 999px) {
+    .pizza_container {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
 }

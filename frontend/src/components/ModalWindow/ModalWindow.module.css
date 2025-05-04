@@ -9,9 +9,9 @@
 
 @keyframes showModalLarge {
   0% {
-    transform: scale(0.1);
+    opacity: 0;
   } 100% {
-    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -44,7 +44,7 @@
   position: absolute;
   right: 30px;
   border-radius: 10px;
-  animation: showModalSmall 0.5s ease-in;
+  animation: showModalSmall 0.4s ease-in;
   overflow-y: scroll;
 }
 
@@ -59,7 +59,7 @@
   height: 80vh;
   margin: 0 auto;
   border-radius: 10px;
-  animation: showModalLarge 0.3s ease-in;
+  animation: showModalLarge 0.5s ease-out;
 }
 
 .closeButton {
