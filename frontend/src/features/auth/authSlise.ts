@@ -1,47 +1,64 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { registerUser } from './authActions'
+import { createSlice } from "@reduxjs/toolkit";
+import { registerUser } from "./AuthActions/registerUser";
+import { userLogin } from "./AuthActions/loginUser";
 
 interface UserInfo {
-    email: string
-    name: string;
-    password: string
+  email: string;
+  name: string;
+  password: string;
 }
 
 interface IAuthState {
-    loading: boolean;
-    userInfo: null | UserInfo
-    userToken: null | string
-    error: null | string | undefined
-    success: boolean
+  loading: boolean;
+  userInfo: null | UserInfo;
+  userToken: any;
+  error: null | string | undefined;
+  success: boolean;
 }
+const userToken = localStorage.getItem("userToken")
+  ? localStorage.getItem("userToken")
+  : null;
 
 const initialState: IAuthState = {
   loading: false,
   userInfo: null,
-  userToken: null, 
+  userToken,
   error: null,
-  success: false, 
-}
+  success: false,
+};
 
 const authSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-      builder
-        .addCase(registerUser.pending, (state) => {
-          state.loading = true
-          state.error = null
-        })
-        .addCase(registerUser.fulfilled, (state, { payload }) => {
-          state.loading = false
-          state.success = true
-        })
-        .addCase(registerUser.rejected, (state, { payload }) => {
-          state.loading = false
-          state.error = payload
-        })
-    },
-  })
+  name: "auth",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(registerUser.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(userLogin.pending, (state, { payload }) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userLogin.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.userToken = payload.access_token;
+      })
+      .addCase(userLogin.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      });
+  },
+});
 
-export default authSlice.reducer
+export default authSlice.reducer;
