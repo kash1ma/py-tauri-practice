@@ -19,6 +19,7 @@ interface UserInfo {
     username: string
     email: string
     number: string
+    role: string
     orders: OrderItems[]
 }
 
