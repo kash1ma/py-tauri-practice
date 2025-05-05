@@ -2,7 +2,7 @@ from sqlalchemy import TIMESTAMP, Column, ForeignKey, Integer, String, Text
 from app.db.base import Base
 
 class Delivery(Base):
-    __tablename__ = "deliveries"
+    __tablename__ = "deliverie"
     id = Column(Integer, primary_key=True, index=True)
     order_id = Column(Integer, ForeignKey("orders.id"), nullable=False)
     address = Column(Text, nullable=False)
