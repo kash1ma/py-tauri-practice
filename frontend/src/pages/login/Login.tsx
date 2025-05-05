@@ -11,7 +11,7 @@ type LoginFormInputs = {
 }
 
 const LoginScreen: React.FC = () => {
-  const { loading, error, userInfo } = useSelector((state: RootState) => state.auth)
+  const { loading, error } = useSelector((state: RootState) => state.auth)
   const dispatch: AppDispatch = useDispatch()
   const { register, handleSubmit } = useForm<LoginFormInputs>()
 

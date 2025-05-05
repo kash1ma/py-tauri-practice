@@ -4,8 +4,8 @@ import { userLogin } from "./AuthActions/loginUser";
 
 interface UserInfo {
   email: string;
-  name: string;
-  password: string;
+  username: string;
+  role: string
 }
 
 interface IAuthState {
@@ -37,7 +37,7 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
+      .addCase(registerUser.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
       })
@@ -45,7 +45,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(userLogin.pending, (state, { payload }) => {
+      .addCase(userLogin.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -53,6 +53,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.userToken = payload.access_token;
+        state.userInfo = payload.user
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.error = payload;

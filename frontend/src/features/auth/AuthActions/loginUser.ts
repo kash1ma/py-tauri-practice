@@ -10,9 +10,22 @@ interface LoginUserInput {
   access_token?: string;
 }
 
+interface OrderItems {
+    
+}
+
+
+interface UserInfo {
+    username: string
+    email: string
+    number: string
+    orders: OrderItems[]
+}
+
 interface LoginUserResoponse {
   message: string;
-  access_token: string
+  access_token: string;
+  user: UserInfo;
 }
 
 type LoginError = string;

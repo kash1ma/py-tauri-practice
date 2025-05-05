@@ -40,7 +40,6 @@ const CartModalContent = () => {
               onClick={() => dispatch(removeFromCart(item.id))}
             />
             <Input
-              min={1}
               type={TypesInput.NUMBER}
               initialValue={item.quantity}
               onChange={(e) => {
