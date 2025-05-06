@@ -41,7 +41,7 @@ const RegisterScreen = () => {
 
     const payload = {
       email: data.email.toLowerCase(),
-      phone: data.phone, // заглушка
+      phone: data.phone, 
       username: data.firstName,
       password: data.password,
     };

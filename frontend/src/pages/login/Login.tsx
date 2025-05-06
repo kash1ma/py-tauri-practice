@@ -2,7 +2,8 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../app/store'
 import { userLogin } from '../../features/auth/AuthActions/loginUser'
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
 
 type LoginFormInputs = {
   email: string
@@ -11,13 +12,20 @@ type LoginFormInputs = {
 }
 
 const LoginScreen: React.FC = () => {
-  const { loading, error } = useSelector((state: RootState) => state.auth)
+  const { loading, error, userInfo, success } = useSelector((state: RootState) => state.auth)
   const dispatch: AppDispatch = useDispatch()
   const { register, handleSubmit } = useForm<LoginFormInputs>()
+  const navigate = useNavigate()
 
   const submitForm: SubmitHandler<LoginFormInputs> = (data) => {
     dispatch(userLogin(data))
   }
+
+
+useEffect(() => {
+if(success) navigate("/pizzaList")
+
+}, [userInfo])
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>

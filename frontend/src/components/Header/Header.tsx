@@ -47,7 +47,8 @@ const Header = () => {
           </NavLink>
         ) : (
           <>
-            <Button text="регистрация" />{" "}
+          <NavLink to="/register"><Button text="регистрация" /></NavLink>
+            
             <NavLink to="/login">
               <Button text="вход" />
             </NavLink>
