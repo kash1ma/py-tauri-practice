@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from app.models.user import User as UserModel
+from app.models.user_model import User as UserModel
 from app.schemas.user_schemas import UserCreate, UserUpdate
 from passlib.context import CryptContext
 

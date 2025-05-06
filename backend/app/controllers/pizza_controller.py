@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.models.pizza import Pizza as PizzaModel
-from app.schemas.pizza import PizzaCreate, PizzaUpdate
+from app.models.pizza_model import Pizza as PizzaModel
+from app.schemas.pizza_schemas import PizzaCreate, PizzaUpdate
 from fastapi import HTTPException
 
 def get_all_pizzas(db: Session):
