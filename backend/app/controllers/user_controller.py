@@ -15,14 +15,14 @@ def get_user_by_email(db: Session, email: str):
 def get_user_by_id(db: Session, user_id: int):
     db_user = db.query(UserModel).filter(UserModel.id == user_id).first()
     if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="Пользователь не найден")
     return db_user
 
 def create_user(db: Session, user: UserCreate):
     if db.query(UserModel).filter(UserModel.email == user.email).first():
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=400, detail="Почта уже зарегистрирована")
     if db.query(UserModel).filter(UserModel.phone == user.phone).first():
-        raise HTTPException(status_code=400, detail="Phone number already registered")
+        raise HTTPException(status_code=400, detail="Номер телефона уже зарегистрирован")
 
     hashed_password = pwd_context.hash(user.password)
     db_user = UserModel(
@@ -40,17 +40,15 @@ def create_user(db: Session, user: UserCreate):
 def update_user(db: Session, user_id: int, user: UserUpdate):
     db_user = db.query(UserModel).filter(UserModel.id == user_id).first()
     if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="Пользователь не найден")
     
-    # Проверка на уникальность email
     if db_user.email != user.email:
         if db.query(UserModel).filter(UserModel.email == user.email).first():
-            raise HTTPException(status_code=400, detail="Email already registered by another user")
+            raise HTTPException(status_code=400, detail="Почта уже зарегистрирована другим пользователем")
 
-    # Проверка на уникальность phone
     if db_user.phone != user.phone:
         if db.query(UserModel).filter(UserModel.phone == user.phone).first():
-            raise HTTPException(status_code=400, detail="Phone number already registered by another user")
+            raise HTTPException(status_code=400, detail="Телефон уже зарегистрирован другим пользователем")
 
     db_user.email = user.email
     db_user.phone = user.phone
@@ -65,8 +63,8 @@ def update_user(db: Session, user_id: int, user: UserUpdate):
 def delete_user(db: Session, user_id: int):
     db_user = db.query(UserModel).filter(UserModel.id == user_id).first()
     if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="Пользователь не найден")
     
     db.delete(db_user)
     db.commit()
-    return {"detail": "User deleted successfully"}
+    return {"detail": "Пользователь удален"}
