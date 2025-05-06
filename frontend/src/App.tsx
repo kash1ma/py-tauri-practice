@@ -4,6 +4,8 @@ import MainPage from "./pages/main/MainPage";
 import Header from "./components/Header/Header";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Profile from "./pages/profile/Profile";
+import RegisterScreen from "./pages/register/Register";
+import LoginScreen from "./pages/login/Login";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/pizzaList" element={<MainPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/register" element={<RegisterScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
       </Routes>
     </BrowserRouter>
   );

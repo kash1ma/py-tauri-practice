@@ -42,7 +42,18 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         )
 
     access_token = create_access_token(data={"sub": db_user.email})
-    return {"access_token": access_token, "token_type": "bearer"}
+    user_data = {
+        "id": db_user.id,
+        "email": db_user.email,
+        "phone": db_user.phone,
+        "username": db_user.username,
+        "role": db_user.role,
+    }
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": user_data
+    }
 
 @router.get("/me", response_model=UserRead)
 def get_current_user(token: str, db: Session = Depends(get_db)):

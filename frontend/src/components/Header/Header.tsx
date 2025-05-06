@@ -3,14 +3,17 @@ import Button from "../../ui/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ModalCart from "../ModalWindow/ModalWindow";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCartCount } from "../../features/cart/cartSlice";
 import CartModalContent from "../ModalWindow/ModalContent/CartModalContent/CartModalContent";
+import { RootState } from "../../app/store";
 
 const Header = () => {
   const navigate = useNavigate();
   const [isOpenCartModal, setisOpenCartModal] = useState(false);
-  const cartCount = useSelector(selectCartCount)
+  const cartCount = useSelector(selectCartCount);
+  const isLoggin = useSelector((state: RootState) => state.auth.userInfo);
+  const isAdmin = useSelector((state: RootState) => state.auth.userInfo?.role)
 
   return (
     <>
@@ -25,21 +28,42 @@ const Header = () => {
           text="Our Pizza App"
         />
         <ul className={style.items_container}>
+          <li>
+            <Button text="Заказы" />
+          </li>
+
+          <li>
+            <Button
+              text={`Корзина ${cartCount}`}
+              onClick={() => setisOpenCartModal(true)}
+            />
+          </li>
+        </ul>
+        {isLoggin ? (
           <NavLink to="/profile">
             <li>
               <Button text="Профиль" />
             </li>
           </NavLink>
-          <li>
-            <Button text="Заказы" />
-          </li>
-         
-            <li>
-              <Button text={`Корзина ${cartCount}`} onClick={() => setisOpenCartModal(true)} />
-            </li>
-        </ul>
+        ) : (
+          <>
+          <NavLink to="/register"><Button text="регистрация" /></NavLink>
+            
+            <NavLink to="/login">
+              <Button text="вход" />
+            </NavLink>
+          </>
+        )}
+        {isAdmin === "admin" ? <Button text="админка"/> : null}
       </nav>
-      {isOpenCartModal && (<ModalCart size="small" isOpen={isOpenCartModal} onClose={() => setisOpenCartModal(false)} children={<CartModalContent />}/>)}
+      {isOpenCartModal && (
+        <ModalCart
+          size="small"
+          isOpen={isOpenCartModal}
+          onClose={() => setisOpenCartModal(false)}
+          children={<CartModalContent />}
+        />
+      )}
     </>
   );
 };

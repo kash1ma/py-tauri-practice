@@ -3,7 +3,7 @@ from app.db.base import Base
 from sqlalchemy.orm import relationship
 
 class Order(Base):
-    __tablename__ = "orders"
+    __tablename__ = "order"
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     created_at = Column(TIMESTAMP, server_default=func.now())

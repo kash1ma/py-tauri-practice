@@ -7,7 +7,7 @@ const useFetch = (
   body?: Record<string, any>
 ) => {
   const [data, setData] = useState<null | AxiosResponse>(null);
-  const [, setError] = useState(null);
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,6 +29,7 @@ const useFetch = (
   return {
     data,
     isLoading,
+    error
   };
 };
 
