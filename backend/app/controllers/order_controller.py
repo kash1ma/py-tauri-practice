@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
 from app.models.order_model import Order as OrderModel
-from app.schemas.order_schemas import OrderCreate, OrderUpdate, OrderRead
+from app.schemas.order_schemas import OrderCreate, OrderUpdate
 
 def get_all_orders(db: Session):
     return db.query(OrderModel).all()
