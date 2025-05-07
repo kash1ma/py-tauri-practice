@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Navigate to="pizzalist" replace />} />
+        <Route path="/" element={<Navigate to="pizzaList" replace />} />
         <Route path="/pizzaList" element={<MainPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<ErrorPage />} />
