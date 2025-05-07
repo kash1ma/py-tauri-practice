@@ -11,9 +11,4 @@ class Delivery(Base):
     phone = Column(String)
     dispatched_at = Column(TIMESTAMP)
     delivered_at = Column(TIMESTAMP)
-
-    # первые 10 секунд будет статус "обрабатывается"
-    # потом "заказ готовиться" в течение 15 минут
-    # потом "курьер в пути" в течение 15 минут
-    # потом "доставлено"
     status = Column(String)
