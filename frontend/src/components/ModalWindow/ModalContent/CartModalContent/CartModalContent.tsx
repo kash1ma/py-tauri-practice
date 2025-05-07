@@ -12,6 +12,7 @@ import Input from "../../../../ui/Input/Input";
 import { TypesInput } from "../../../../types/enums/InputEnums";
 import styles from "./CartModal.module.css";
 import { useNavigate } from "react-router-dom";
+import handleCloseModal from "../../../../helpers/closeModal";
 
 const CartModalContent = () => {
   const items = useSelector((state: RootState) => state.cart.items);
@@ -63,7 +64,7 @@ const CartModalContent = () => {
           </li>
         ))}
       </ul>
-      <Button text="Оформить заказ" onClick={() => navigate("/orderpage")}/>
+      <Button text="Оформить заказ" onClick={() => {navigate("/orderpage");handleCloseModal()}}/>
     </div>
   );
 };

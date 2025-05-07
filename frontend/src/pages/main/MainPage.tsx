@@ -2,11 +2,16 @@ import PizzaCard from "../../components/PizzaCard/PizzaCard";
 import styles from "./MainPage.module.css"
 import useFetch from "../../hooks/useFetch";
 import { IPizza } from "../../fakedata/data";
+import { useEffect } from "react";
 
 
 const MainPage = () => {
-  const { data, isLoading, error} = useFetch<IPizza[]>("http://localhost:8000/pizzas/pizzas/", "get")
+  const { data, isLoading, error, sendRequset} = useFetch<IPizza[]>()
   
+  useEffect(() => {
+    sendRequset("http://localhost:8000/pizzas/pizzas/", "get")
+  }, [])
+
   if(isLoading) return (
     <div className="">Загрузка</div>
   )

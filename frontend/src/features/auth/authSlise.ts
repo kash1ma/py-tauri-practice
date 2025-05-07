@@ -6,6 +6,8 @@ interface UserInfo {
   email: string;
   username: string;
   role: string
+  id: string;
+  phone: string
 }
 
 interface IAuthState {
