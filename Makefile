@@ -52,17 +52,17 @@ fake-pizzas:
 
 # Команда для создания фейковых пользователей
 fake-users:
-    docker exec -it backend python -m app.faker.populate_users
+	docker exec -it backend python -m app.faker.populate_users
 
 # Команда для создания фейковых заказов
 fake-orders:
-    docker exec -it backend python -m app.faker.populate_orders
+	docker exec -it backend python -m app.faker.populate_orders
 
 fake-deliveries:
-    docker exec -it backend python -m app.faker.populate_delivery
+	docker exec -it backend python -m app.faker.populate_delivery
 
 fake-order-items:
-    docker exec -it backend python -m app.faker.populate_order_items
+	docker exec -it backend python -m app.faker.populate_order_items
 
 # Команда для создания фейковых данных
 fake-data:
