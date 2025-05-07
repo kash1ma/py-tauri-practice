@@ -12,7 +12,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [isOpenCartModal, setisOpenCartModal] = useState(false);
   const cartCount = useSelector(selectCartCount);
-  const isLoggin = useSelector((state: RootState) => state.auth.userInfo);
+  const isLoggin = useSelector((state: RootState) => state.auth.success);
   const isAdmin = useSelector((state: RootState) => state.auth.userInfo?.role)
 
   return (

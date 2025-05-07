@@ -14,7 +14,7 @@ interface RegisterFormData {
 }
 
 const RegisterScreen = () => {
-  const { loading, userInfo, error, success } = useSelector(
+  const { loading, userInfo, error, redirect } = useSelector(
     (state: RootState) => state.auth
   );
 
@@ -23,9 +23,9 @@ const RegisterScreen = () => {
   const { register, handleSubmit } = useForm<RegisterFormData>();
 
   useEffect(() => {
-    if (success) navigate("/login");
+    if (redirect) navigate("/login");
     if (userInfo) navigate("/pizzaList");
-  }, [navigate, userInfo, success]);
+  }, [navigate, userInfo, redirect]);
 
   const submitForm: SubmitHandler<RegisterFormData> = (data) => {
     if (data.password !== data.confirmPassword) {
@@ -33,11 +33,6 @@ const RegisterScreen = () => {
       return;
     }
 
-    // email.toLowerCase(),
-    // phone: phone,
-    // username: username,
-    // role: "user",
-    // password: password,
 
     const payload = {
       email: data.email.toLowerCase(),

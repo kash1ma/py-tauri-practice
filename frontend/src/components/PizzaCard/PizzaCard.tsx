@@ -27,7 +27,7 @@ const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
         <div className={styles.pizza_info}>
           <p className="info">{pizza.name}</p>
           <p>{pizza.decription}</p>
-          <p className="info" style={{color: "black", fontWeight: "bold"}}>От {pizza.price} Рублей</p>
+          <p className="info" style={{color: "black", fontWeight: "bold"}}>От {pizza.price_cents} Рублей</p>
         </div>
         <Button
           text="Выбрать"

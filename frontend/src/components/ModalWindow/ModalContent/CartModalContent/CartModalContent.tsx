@@ -11,12 +11,14 @@ import { RootState } from "../../../../app/store";
 import Input from "../../../../ui/Input/Input";
 import { TypesInput } from "../../../../types/enums/InputEnums";
 import styles from "./CartModal.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CartModalContent = () => {
   const items = useSelector((state: RootState) => state.cart.items);
   const pizzaCount = useSelector(selectCartCount);
   const cost = useSelector(selectCost);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   return (
     <div style={{ marginTop: 50 }}>
       <div className={styles.cart_header}>
@@ -61,6 +63,7 @@ const CartModalContent = () => {
           </li>
         ))}
       </ul>
+      <Button text="Оформить заказ" onClick={() => navigate("/orderpage")}/>
     </div>
   );
 };
