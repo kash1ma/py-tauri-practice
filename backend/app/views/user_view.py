@@ -18,7 +18,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return user_controller.create_user(db, user)
 
-@router.put("/{user_id}", response_model=User)
+@router.patch("/{user_id}", response_model=User)
 def update_user(user_id: int, user: UserUpdate, db: Session = Depends(get_db)):
     return user_controller.update_user(db, user_id, user)
 
