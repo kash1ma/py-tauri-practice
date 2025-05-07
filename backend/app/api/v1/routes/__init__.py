@@ -1,5 +1,11 @@
 from fastapi import APIRouter
 from app.api.v1.routes import auth
+from app.views import pizza_view, user_view, order_view
 
 router = APIRouter()
+
 router.include_router(auth.router, prefix="/auth", tags=["auth"])
+router.include_router(pizza_view.router, prefix="/pizzas", tags=["pizzas"])
+router.include_router(user_view.router, prefix="/users", tags=["users"])
+router.include_router(order_view.router, prefix="/orders", tags=["orders"])
+router.include_router(order_view.router, prefix="/orders_items", tags=["orders_items"])

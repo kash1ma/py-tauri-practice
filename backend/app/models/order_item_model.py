@@ -12,3 +12,5 @@ class OrderItem(Base):
 
     order = relationship("Order", back_populates="items")
     pizza = relationship("Pizza")
+
+    #Информация о заказе - какие пиццы и в каком количестве были заказаны

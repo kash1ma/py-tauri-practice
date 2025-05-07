@@ -45,3 +45,7 @@ lint-python:
 cleanup-migrations:
 	@echo "Удаляю старые миграции, если их больше 3..."
 	python backend/clear_migrate.py
+
+# Команда для создания фейковых данных
+fake-pizzas:
+	docker exec -it backend python -m app.core.populate_pizzas

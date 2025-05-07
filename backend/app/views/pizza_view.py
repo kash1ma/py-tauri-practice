@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.controllers import pizza_controller
-from app.schemas.pizza import Pizza, PizzaCreate, PizzaUpdate
+from app.schemas.pizza_schemas import Pizza, PizzaCreate, PizzaUpdate
 
 router = APIRouter(prefix="/pizzas", tags=["pizzas"])
 
