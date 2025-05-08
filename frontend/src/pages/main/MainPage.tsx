@@ -24,7 +24,7 @@ const MainPage = () => {
     <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection: "column", width: "100%"}}>
       <p style={{textAlign: "center", fontSize: 60 , color: "#ea7c69"}}>Каталог</p>
       <div className={styles.pizza_container}>
-      {data?.data.map((pizza) => (
+      {(data as Array<IPizza>).map((pizza) => (
        <PizzaCard key={pizza.id} pizza={pizza}/>
       ))}
       </div>

@@ -1,48 +1,70 @@
 import React from "react";
 
 export type Column<T> = {
-  key: keyof T;
-  title?: string;
-  render?: (value: any, row: T) => React.ReactNode;
+  key: string;
+  title: string;
+  dataIndex?: keyof T;
+  render?: (value: any, record: T, index: number) => React.ReactNode;
 };
 
 type TableProps<T> = {
   data: T[];
   columns: Column<T>[];
+  rowKey: keyof T;
 };
 
-function Table<T>({ data, columns }: TableProps<T>) {
-  if (!data || data.length === 0) {
-    return <p>Нет данных для отображения</p>;
-  }
-
+const Table = <T extends Record<string, any>>({
+  data,
+  columns,
+  rowKey,
+}: TableProps<T>) => {
   return (
-    <table style={{ borderCollapse: "collapse", width: "100%" }}>
+    <table style={{ width: "100%", borderCollapse: "collapse" }}>
       <thead>
         <tr>
           {columns.map((col) => (
             <th
-              key={String(col.key)}
-              style={{ border: "1px solid #ccc", padding: "8px", textAlign: "left" }}
+              key={col.key}
+              style={{
+                border: "1px solid #ccc",
+                padding: "8px",
+                backgroundColor: "#f9f9f9",
+              }}
             >
-              {col.title || String(col.key)}
+              {col.title}
             </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {columns.map((col) => (
-              <td key={String(col.key)} style={{ border: "1px solid #ccc", padding: "8px" }}>
-                {col.render ? col.render(row[col.key], row) : String(row[col.key])}
-              </td>
-            ))}
-          </tr>
-        ))}
+        {data.map((record, index) => {
+          const key = record[rowKey];
+          if (key === undefined || key === null) {
+            console.warn(`Row key '${String(rowKey)}' is missing in record`, record);
+          }
+
+          return (
+            <tr key={String(key) ?? `${index}`}>
+              {columns.map((col) => {
+                const value = col.dataIndex ? record[col.dataIndex] : null;
+
+                return (
+                  <td
+                    key={col.key}
+                    style={{ border: "1px solid #ccc", padding: "8px" }}
+                  >
+                    {col.render
+                      ? col.render(value, record, index)
+                      : (value !== undefined ? value : "-")}
+                  </td>
+                );
+              })}
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
-}
+};
 
 export default Table;

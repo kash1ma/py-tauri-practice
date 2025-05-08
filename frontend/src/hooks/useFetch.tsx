@@ -2,34 +2,15 @@ import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 
 function useFetch<T>() {
-  const [data, setData] = useState<null | AxiosResponse<T>>(null);
+  const [data, setData] = useState<null | T>(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   if (type === "post") {
-  //     axios
-  //       .post(url, body)
-  //       .then((response: AxiosResponse<T>) => setData(response))
-  //       .catch((err) => setError(err))
-  //       .finally(() => setIsLoading(false));
-  //   } else if(type === "get"){
-  //     axios
-  //       .get(url)
-  //       .then((response: AxiosResponse<T>) => setData(response))
-  //       .catch((err) => setError(err))
-  //       .finally(() => setIsLoading(false));
-  //   } else {
-  //     axios
-  //       .put(url, body)
-  //       .then((response: AxiosResponse<T>) => setData(response))
-  //       .catch((error) => setError(error))
-  //   }
-  // }, [url, type, body]);
+type RequstType = "post" | "get" | "patch" | "delete"
 
   const sendRequset = async (
     url: string,
-    type: "post" | "get" | "patch",
+    type: RequstType,
     body?: Record<string, any>
   ) => {
     let response: AxiosResponse<T> | null = null;
@@ -44,8 +25,10 @@ function useFetch<T>() {
       if (type === "patch") {
         response = await axios.patch(url, body);
       }
-
-      setData(response);
+      if(type === "delete") {
+        response = await axios.delete(url, { data: body})
+      }
+      setData(response?.data ?? null);
     } catch (e: any) {
       setError(e);
     } finally {
