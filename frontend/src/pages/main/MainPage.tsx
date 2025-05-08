@@ -9,7 +9,7 @@ const MainPage = () => {
   const { data, isLoading, error, sendRequset} = useFetch<IPizza[]>()
   
   useEffect(() => {
-    sendRequset("http://localhost:8000/pizzas/pizzas/", "get")
+    sendRequset("http://localhost:8000/pizzas/", "get")
   }, [])
 
   if(isLoading) return (

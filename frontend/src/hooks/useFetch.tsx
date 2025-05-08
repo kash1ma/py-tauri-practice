@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function useFetch<T>() {
   const [data, setData] = useState<null | AxiosResponse<T>>(null);
@@ -29,7 +29,7 @@ function useFetch<T>() {
 
   const sendRequset = async (
     url: string,
-    type: "post" | "get" | "put",
+    type: "post" | "get" | "patch",
     body?: Record<string, any>
   ) => {
     let response: AxiosResponse<T> | null = null;
@@ -41,8 +41,8 @@ function useFetch<T>() {
       if (type === "post") {
         response = await axios.post(url, body);
       }
-      if (type === "put") {
-        response = await axios.put(url, body);
+      if (type === "patch") {
+        response = await axios.patch(url, body);
       }
 
       setData(response);
