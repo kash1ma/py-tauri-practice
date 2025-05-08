@@ -19,7 +19,7 @@ const Table = <T extends Record<string, any>>({
   rowKey,
 }: TableProps<T>) => {
   return (
-    <table style={{ width: "100%", borderCollapse: "collapse" }}>
+    <table style={{ width: "90%", borderCollapse: "collapse", margin: "0 auto" }}>
       <thead>
         <tr>
           {columns.map((col) => (
@@ -39,10 +39,6 @@ const Table = <T extends Record<string, any>>({
       <tbody>
         {data.map((record, index) => {
           const key = record[rowKey];
-          if (key === undefined || key === null) {
-            console.warn(`Row key '${String(rowKey)}' is missing in record`, record);
-          }
-
           return (
             <tr key={String(key) ?? `${index}`}>
               {columns.map((col) => {
