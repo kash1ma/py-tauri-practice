@@ -16,6 +16,8 @@ interface OrderItems {
 
 
 interface UserInfo {
+  id: string;
+  phone: string
     username: string
     email: string
     number: string

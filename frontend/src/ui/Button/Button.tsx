@@ -7,6 +7,7 @@ interface IButtonProps {
   imgStyles?: CSSProperties;
   img?: string;
   onClick?: () => void;
+  isDisabled?: boolean
 }
 
 const Button: FC<IButtonProps> = ({
@@ -15,6 +16,7 @@ const Button: FC<IButtonProps> = ({
   otherButtonStyles,
   img,
   imgStyles,
+  isDisabled
 }) => {
   return (
     <div>
@@ -22,6 +24,7 @@ const Button: FC<IButtonProps> = ({
         className={styles.button}
         style={otherButtonStyles}
         onClick={onClick}
+        disabled={isDisabled}
       >
         {text ? text : <img style={imgStyles} src={img} />}
       </button>

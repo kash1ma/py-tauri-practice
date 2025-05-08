@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Profile from "./pages/profile/Profile";
 import RegisterScreen from "./pages/register/Register";
 import LoginScreen from "./pages/login/Login";
+import Order from "./pages/Order/Order";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/login" element={<LoginScreen />} />
+        <Route path="/orderpage" element={<Order />} />
       </Routes>
     </BrowserRouter>
   );

@@ -6,6 +6,8 @@ interface UserInfo {
   email: string;
   username: string;
   role: string
+  id: string;
+  phone: string
 }
 
 interface IAuthState {
@@ -14,6 +16,7 @@ interface IAuthState {
   userToken: any;
   error: null | string | undefined;
   success: boolean;
+  redirect: boolean
 }
 const userToken = localStorage.getItem("userToken")
   ? localStorage.getItem("userToken")
@@ -25,6 +28,7 @@ const initialState: IAuthState = {
   userToken,
   error: null,
   success: false,
+  redirect: false
 };
 
 const authSlice = createSlice({
@@ -39,7 +43,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state) => {
         state.loading = false;
-        state.success = true;
+        state.redirect = true
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.loading = false;
