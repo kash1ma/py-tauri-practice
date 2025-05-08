@@ -7,6 +7,7 @@ import Profile from "./pages/profile/Profile";
 import RegisterScreen from "./pages/register/Register";
 import LoginScreen from "./pages/login/Login";
 import Order from "./pages/Order/Order";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/orderpage" element={<Order />} />
+        <Route path="/admincrud" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

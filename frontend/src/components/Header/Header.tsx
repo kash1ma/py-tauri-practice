@@ -54,7 +54,7 @@ const Header = () => {
             </NavLink>
           </>
         )}
-        {isAdmin === "admin" ? <Button text="админка"/> : null}
+        {isAdmin === "admin" ? <Button text="админка" onClick={() => navigate("/admincrud")}/> : null}
       </nav>
       {isOpenCartModal && (
         <ModalCart
