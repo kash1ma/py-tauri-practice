@@ -6,11 +6,22 @@
     font-size: 18px;
     min-width: 400px;
     border-radius: 15px;
-    padding: 15px;
-    background-color: white;
+    padding: 25px;
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    color: #f0f0f0;
+    transition: all 0.3s ease;
+    border: 1px solid #3d3d3d;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+    }
 
     p {
-        color: gray;
+        color: #b0b0b0;
+        margin: 5px 0;
     }
 }
 
@@ -18,7 +29,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
     width: 100%;
 }
 
@@ -26,24 +37,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #252525;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    border: 1px solid #3d3d3d;
 }
 
 .pizza_image {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
-    margin-top: 10px;
+    border-radius: 8px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
 .pizza_info {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 
-    p:first-child, p:last-child {
-        font-size: 25px;
-        color: black;
-        font-weight: bold;
+    p:first-child {
+        font-size: 26px;
+        color: #ffffff;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 5px;
+    }
+
+    p:last-child {
+        font-size: 24px;
+        color: #ff9e3f;
+        font-weight: 600;
+        margin-top: 10px;
     }
 }
-
