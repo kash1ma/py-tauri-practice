@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import Table, { Column } from "../../components/Table/Table";
 import Button from "../../ui/Button/Button";
+import ModalWindow from "../../components/ModalWindow/ModalWindow";
+import UsersAdminCrud from "../../components/ModalWindow/ModalContent/UsersAdminCrud/UsersAdminCrud";
 
 type Pizza = {
   id: number;
@@ -15,6 +17,8 @@ const PizzaAdmin = () => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const tableContRef = useRef<HTMLDivElement>(null);
   const pizzas = Array.isArray(data) ? data : [];
+const [isOpenModal, setIsModalOpen] = useState(false)
+
 
   useEffect(() => {
     sendRequset("http://localhost:8000/pizzas", "get");
@@ -51,6 +55,10 @@ const PizzaAdmin = () => {
             text="Удалить"
             otherButtonStyles={{ backgroundColor: "red", color: "white" }}
           />
+          <Button text="Изменить" otherButtonStyles={{backgroundColor: "blue"}}
+          onClick={() => setIsModalOpen(true)}
+          />
+
         </div>
       ),
     },
@@ -67,6 +75,7 @@ const PizzaAdmin = () => {
           rowKey="id"
         />
       )}
+      {/* {isOpenModal && (<ModalWindow isOpen={isOpenModal} onClose={() => setIsModalOpen(false)} size="large" children={<UsersAdminCrud data={} />}/>)} */}
     </div>
   );
 };

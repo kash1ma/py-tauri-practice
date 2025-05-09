@@ -10,6 +10,7 @@ import Order from "./pages/Order/Order";
 import Admin from "./pages/admin/Admin";
 import UserAdmin from "./pages/admin/UsersAdmin";
 import PizzaAdmin from "./pages/admin/PizzaAdmin";
+import ProtectedRoute from "./utils/ProtectedRoutes";
 
 function App() {
   return (
@@ -23,9 +24,30 @@ function App() {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/orderpage" element={<Order />} />
-        <Route path="/admincrud" element={<Admin />} />
-        <Route path="/admincrud/users" element={<UserAdmin />} />
-        <Route path="/admincrud/pizzas" element={<PizzaAdmin />} />
+        <Route
+          path="/admincrud"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admincrud/users"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <UserAdmin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admincrud/pizzas"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <PizzaAdmin />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
