@@ -5,25 +5,117 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 70px;
-  background-color: black;
+  height: 80px;
+  background: #121212;
   color: white;
   z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 0 2rem;
+  border-bottom: 1px solid #333;
 }
 
 .items_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 40px;
-  gap: 20px;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.header_text {
-  font-size: 10px;
-  margin-left: 40px;
+.items_container li {
+  transition: all 0.3s ease;
 }
 
-.header_text :hover {
+.items_container li:hover {
+  transform: translateY(-2px);
+}
+
+.header_container button {
+  transition: all 0.3s ease;
+  border-radius: 24px;
+  padding: 8px 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: none;
   cursor: pointer;
+}
+
+.items_container li:last-child button {
+  background-color: #ff7b25; 
+  color: #121212; 
+}
+
+.items_container li:last-child button:hover {
+  background-color: #ff6a00; 
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+}
+
+.header_container > a button {
+  background-color: #333; 
+  color: #ff7b25; 
+  border: 1px solid #ff7b25;
+}
+
+.header_container > a button:hover {
+  background-color: #ff7b25; /* Оранжевый фон */
+  color: #121212; /* Тёмный текст */
+}
+
+.header_container > button[onclick] {
+  background-color: #333;
+  color: #ff7b25;
+  border: 1px solid #ff7b25;
+}
+
+.header_container > button[onclick]:hover {
+  background-color: #ff7b25;
+  color: #121212;
+}
+
+.header_container > button:first-child {
+  color: #ff7b25;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.header_container a.active button {
+  background-color: #ff7b25;
+  color: #121212;
+  font-weight: 700;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.items_container li:last-child button {
+  animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+  .header_container {
+    padding: 0 1rem;
+    height: 70px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .items_container {
+    gap: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .header_container button {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .header_container > button:first-child {
+    margin: 0.5rem 0;
+  }
 }
