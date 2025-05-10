@@ -59,7 +59,7 @@ const UserAdmin = () => {
 
   return (
     <div ref={tableContRef} style={{ maxHeight: "100vh", overflow: "auto" }}>
-      <h2>Админ-панель</h2>
+      <h2 style={{color: "rgb(234, 124, 105)", padding: "10px", fontSize: "50px"}}>Админ-панель <br/>Пользователи</h2>
       {isLoading && <p>Загрузка...</p>}
       {users && (
         <Table<User>
