@@ -31,7 +31,7 @@ const UserAdmin = () => {
     if (tableContRef.current) {
       setScrollPosition(tableContRef.current.scrollTop);
     }
-    
+
     await sendRequset(`http://localhost:8000/users/${user.id}`, "delete");
     await sendRequset("http://localhost:8000/users", "get");
   };
@@ -58,16 +58,21 @@ const UserAdmin = () => {
   ];
 
   return (
+
     <div ref={tableContRef} style={{ maxHeight: "100vh", overflow: "auto" }}>
       <h2 style={{color: "rgb(234, 124, 105)", padding: "10px", fontSize: "50px"}}>Админ-панель <br/>Пользователи</h2>
+
       {isLoading && <p>Загрузка...</p>}
-      {users && (
-        <Table<User>
-          data={users}
-          columns={columns}
-          rowKey="id"
-        />
-      )}
+
+      <div
+        ref={tableContRef}
+        style={{
+          flex: 1,
+          overflowY: "auto",
+        }}
+      >
+        {users && <Table<User> data={users} columns={columns} rowKey="id" />}
+      </div>
     </div>
   );
 };
