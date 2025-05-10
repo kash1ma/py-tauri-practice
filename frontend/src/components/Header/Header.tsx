@@ -29,10 +29,6 @@ const Header = () => {
         />
         <ul className={style.items_container}>
           <li>
-            <Button text="Заказы" />
-          </li>
-
-          <li>
             <Button
               text={`Корзина ${cartCount}`}
               onClick={() => setisOpenCartModal(true)}

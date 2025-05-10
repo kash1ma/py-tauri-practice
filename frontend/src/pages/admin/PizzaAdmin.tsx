@@ -65,8 +65,10 @@ const PizzaAdmin = () => {
   ];
 
   return (
-    <div ref={tableContRef} style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      <h2>Админ-панель</h2>
+
+    <div ref={tableContRef} style={{ maxHeight: "100vh", overflow: "auto" }}>
+      <h2 style={{color: "rgb(234, 124, 105)", padding: "10px", fontSize: "50px"}}>Админ-панель <br/>Пиццы</h2>
+
       {isLoading && <p>Загрузка...</p>}
       <div
         ref={tableContRef}
