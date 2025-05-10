@@ -17,12 +17,11 @@ const PizzaAdmin = () => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const tableContRef = useRef<HTMLDivElement>(null);
   const pizzas = Array.isArray(data) ? data : [];
-const [isOpenModal, setIsModalOpen] = useState(false)
-
+  const [isOpenModal, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     sendRequset("http://localhost:8000/pizzas", "get");
-    console.log(pizzas)
+    console.log(pizzas);
   }, []);
 
   useEffect(() => {
@@ -35,7 +34,7 @@ const [isOpenModal, setIsModalOpen] = useState(false)
     if (tableContRef.current) {
       setScrollPosition(tableContRef.current.scrollTop);
     }
-    
+
     await sendRequset(`http://localhost:8000/pizzas/${pizza.id}`, "delete");
     await sendRequset("http://localhost:8000/pizzas", "get");
   };
@@ -43,8 +42,8 @@ const [isOpenModal, setIsModalOpen] = useState(false)
   const columns: Column<Pizza>[] = [
     { key: "id", title: "ID", dataIndex: "id" },
     { key: "name", title: "Название", dataIndex: "name" },
-    { key: "decription", title: "Описание", dataIndex: "description"},
-    { key: "price_cents", title: "Цена", dataIndex: "price_cents"},
+    { key: "decription", title: "Описание", dataIndex: "description" },
+    { key: "price_cents", title: "Цена", dataIndex: "price_cents" },
     {
       key: "actions",
       title: "Действия",
@@ -55,26 +54,29 @@ const [isOpenModal, setIsModalOpen] = useState(false)
             text="Удалить"
             otherButtonStyles={{ backgroundColor: "red", color: "white" }}
           />
-          <Button text="Изменить" otherButtonStyles={{backgroundColor: "blue"}}
-          onClick={() => setIsModalOpen(true)}
+          <Button
+            text="Изменить"
+            otherButtonStyles={{ backgroundColor: "blue" }}
+            onClick={() => setIsModalOpen(true)}
           />
-
         </div>
       ),
     },
   ];
 
   return (
-    <div ref={tableContRef} style={{ maxHeight: "100vh", overflow: "auto" }}>
+    <div ref={tableContRef} style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
       <h2>Админ-панель</h2>
       {isLoading && <p>Загрузка...</p>}
-      {pizzas && (
-        <Table<Pizza>
-          data={pizzas}
-          columns={columns}
-          rowKey="id"
-        />
-      )}
+      <div
+        ref={tableContRef}
+        style={{
+          flex: 1,
+          overflowY: "scroll",
+        }}
+      >
+        {pizzas && <Table<Pizza> data={pizzas} columns={columns} rowKey="id" />}
+      </div>
       {/* {isOpenModal && (<ModalWindow isOpen={isOpenModal} onClose={() => setIsModalOpen(false)} size="large" children={<UsersAdminCrud data={} />}/>)} */}
     </div>
   );
