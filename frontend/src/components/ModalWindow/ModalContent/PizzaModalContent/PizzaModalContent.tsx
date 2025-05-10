@@ -11,7 +11,6 @@ import { CartItem } from "../../../../features/cart/types";
 import handleCloseModal from "../../../../helpers/closeModal";
 import { RootState } from "../../../../app/store";
 
-
 type IPizzaModalContentProps = {
   pizza: IPizza;
   img: string;
@@ -20,16 +19,16 @@ type IPizzaModalContentProps = {
 const PizzaModalContent: FC<IPizzaModalContentProps> = ({ pizza, img }) => {
   const quantity = useInput(1);
   const [currentSize, setCurrentSize] = useState(25);
-  const containerPizza = useRef<HTMLDivElement>(null)
-  const isAuth = useSelector((state: RootState) => state.auth.success)
+  const containerPizza = useRef<HTMLDivElement>(null);
+  const isAuth = useSelector((state: RootState) => state.auth.success);
 
   useEffect(() => {
-    containerPizza.current?.focus()
-  }, [])
+    containerPizza.current?.focus();
+  }, []);
 
   const dispatch = useDispatch();
   const options = [
-    { value: 25, label: "25 cм" },
+    { value: 25, label: "25 см" },
     { value: 30, label: "30 см" },
     { value: 35, label: "35 см" },
   ];
@@ -42,7 +41,6 @@ const PizzaModalContent: FC<IPizzaModalContentProps> = ({ pizza, img }) => {
       quantity: Number(quantity.value),
       id: pizza.name + currentSize,
     };
-
     dispatch(addToCart(pizzaToAdd));
   };
 
@@ -61,28 +59,49 @@ const PizzaModalContent: FC<IPizzaModalContentProps> = ({ pizza, img }) => {
   }, [price, quantity.value]);
 
   return (
-    <div tabIndex={0} ref={containerPizza} className={styles.pizza_modal_container} onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === "Enter") {
-        handleAddToCart();
-        handleCloseModal()
-      }
-    }}>
-      
-      <img src={img} alt="pizza" />
-      <h3>Выберите Размер Пиццы</h3>
+    <div
+      tabIndex={0}
+      ref={containerPizza}
+      className={styles.pizzaModalContainer}
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "Enter") {
+          handleAddToCart();
+          handleCloseModal();
+        }
+      }}
+    >
+      <img src={img} alt="pizza" className={styles.pizzaImage} />
+      <h3 className={styles.sizeTitle}>Выберите размер пиццы</h3>
       <Select
         options={options}
         onChange={(e) => setCurrentSize(Number(e.target.value))}
       />
-      <p>Цена : {totalPrice}</p>
+      <p className={styles.priceText}>Цена: {totalPrice} ₽</p>
       <Button
         text={isAuth ? "Добавить в корзину" : "Войдите, чтобы добавить товар"}
         onClick={() => {
           handleAddToCart();
           handleCloseModal();
         }}
-        otherButtonStyles={isAuth ? {} : {backgroundColor: "gray"}}
-        isDisabled={isAuth ? false : true}
+        otherButtonStyles={
+          isAuth
+            ? {
+                backgroundColor: "#ff7b25",
+                color: "#121212",
+                padding: "12px 24px",
+                borderRadius: "8px",
+                fontWeight: "600",
+                transition: "all 0.2s ease",
+              }
+            : {
+                backgroundColor: "gray",
+                color: "#fff",
+                padding: "12px 24px",
+                borderRadius: "8px",
+                cursor: "not-allowed",
+              }
+        }
+        isDisabled={!isAuth}
       />
     </div>
   );

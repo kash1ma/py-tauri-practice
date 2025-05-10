@@ -32,13 +32,6 @@ const ModalWindow: FC<IModalCartProps> = ({ isOpen, onClose, children, size }) =
       aria-modal="true"
     >
       <div className={ size === "small" ? styles.modalContainerSmall : styles.modalContainerLarge}>
-        <button
-          className={styles.closeButton}
-          onClick={onClose}
-          aria-label="Close modal"
-        >
-          &times;
-        </button>
         {children}
       </div>
     </div>,
