@@ -7,6 +7,7 @@ import UsersAdminCrud from "../../components/ModalWindow/ModalContent/UsersAdmin
 import Input from "../../ui/Input/Input";
 import { TypesInput } from "../../types/enums/InputEnums";
 import useInput from "../../hooks/useInput";
+import handleCloseModal from "../../helpers/closeModal";
 
 type Pizza = {
   id: number;
@@ -20,8 +21,15 @@ const PizzaAdmin = () => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const tableContRef = useRef<HTMLDivElement>(null);
   const pizzas = Array.isArray(data) ? data : [];
-  const [isOpenModal, setIsModalOpen] = useState(false);
+
+  const [isOpenModalEdit, setIsModalOpenEdit] = useState(false);
+  const [isOpenModalCreate, setIsModalOpenCreate] = useState(false);
   const [selectedPizza, setSelectedPizza] = useState<Pizza | null>(null);
+
+  // 👇 состояния для создания новой пиццы
+  const nameInput = useInput("");
+  const descriptionInput = useInput("");
+  const priceInput = useInput("");
 
   const handleSaveChanges = async (updatedPizza: Pizza) => {
     await sendRequset(
@@ -30,8 +38,19 @@ const PizzaAdmin = () => {
       updatedPizza
     );
     await sendRequset("http://localhost:8000/pizzas", "get");
-    setIsModalOpen(false);
+    setIsModalOpenEdit(false);
     setSelectedPizza(null);
+  };
+
+  const handleCreatePizza = async () => {
+    await sendRequset("http://localhost:8000/pizzas", "post", {
+      name: nameInput.value,
+      description: descriptionInput.value,
+      price_cents: priceInput.value,
+    });
+    handleCloseModal();
+    setIsModalOpenCreate(false);
+    await sendRequset("http://localhost:8000/pizzas", "get");
   };
 
   useEffect(() => {
@@ -69,10 +88,10 @@ const PizzaAdmin = () => {
           />
           <Button
             text="Изменить"
-            otherButtonStyles={{ backgroundColor: "blue" }}
+            otherButtonStyles={{ backgroundColor: "blue", color: "white" }}
             onClick={() => {
               setSelectedPizza(pizza);
-              setIsModalOpen(true);
+              setIsModalOpenEdit(true);
             }}
           />
         </div>
@@ -93,6 +112,37 @@ const PizzaAdmin = () => {
         Пиццы
       </h2>
 
+      {/* 👇 Кнопка для добавления */}
+      <Button text="Добавить пиццу" onClick={() => setIsModalOpenCreate(true)} />
+
+      {isOpenModalCreate && (
+        <ModalWindow
+          isOpen={isOpenModalCreate}
+          onClose={() => setIsModalOpenCreate(false)}
+          size="large"
+        >
+          <Input
+            type={TypesInput.TEXT}
+            initialValue={nameInput.value}
+            onChange={nameInput.handleChange}
+            placeholder="Название пиццы"
+          />
+          <Input
+            type={TypesInput.TEXT}
+            initialValue={descriptionInput.value}
+            onChange={descriptionInput.handleChange}
+            placeholder="Описание"
+          />
+          <Input
+            type={TypesInput.NUMBER}
+            initialValue={priceInput.value}
+            onChange={priceInput.handleChange}
+            placeholder="Цена в центах"
+          />
+          <Button text="Создать пиццу" onClick={handleCreatePizza} />
+        </ModalWindow>
+      )}
+
       {isLoading && <p>Загрузка...</p>}
       <div
         ref={tableContRef}
@@ -104,11 +154,11 @@ const PizzaAdmin = () => {
         {pizzas && <Table<Pizza> data={pizzas} columns={columns} rowKey="id" />}
       </div>
 
-      {isOpenModal && selectedPizza && (
+      {isOpenModalEdit && selectedPizza && (
         <ModalWindow
-          isOpen={isOpenModal}
+          isOpen={isOpenModalEdit}
           onClose={() => {
-            setIsModalOpen(false);
+            setIsModalOpenEdit(false);
             setSelectedPizza(null);
           }}
           size="large"
@@ -121,13 +171,7 @@ const PizzaAdmin = () => {
               const priceInput = useInput(selectedPizza.price_cents);
 
               return (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "10px",
-                  }}
-                >
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                   <Input
                     type={TypesInput.TEXT}
                     initialValue={nameInput.value}
