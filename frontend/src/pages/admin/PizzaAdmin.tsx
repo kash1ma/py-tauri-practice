@@ -25,8 +25,6 @@ const PizzaAdmin = () => {
   const [isOpenModalEdit, setIsModalOpenEdit] = useState(false);
   const [isOpenModalCreate, setIsModalOpenCreate] = useState(false);
   const [selectedPizza, setSelectedPizza] = useState<Pizza | null>(null);
-
-  // 👇 состояния для создания новой пиццы
   const nameInput = useInput("");
   const descriptionInput = useInput("");
   const priceInput = useInput("");
@@ -84,11 +82,29 @@ const PizzaAdmin = () => {
           <Button
             onClick={() => handleDelete(pizza)}
             text="Удалить"
-            otherButtonStyles={{ backgroundColor: "red", color: "white" }}
+            otherButtonStyles={{
+              backgroundColor: "#d32f2f",
+              color: "white",
+              padding: "0.5rem 1rem",
+              borderRadius: "6px",
+              border: "none",
+              cursor: "pointer",
+              fontWeight: "600",
+              transition: "all 0.3s ease",
+            }}
           />
           <Button
             text="Изменить"
-            otherButtonStyles={{ backgroundColor: "blue", color: "white" }}
+            otherButtonStyles={{
+              backgroundColor: "#1976d2",
+              color: "white",
+              padding: "0.5rem 1rem",
+              borderRadius: "6px",
+              border: "none",
+              cursor: "pointer",
+              fontWeight: "600",
+              transition: "all 0.3s ease",
+            }}
             onClick={() => {
               setSelectedPizza(pizza);
               setIsModalOpenEdit(true);
@@ -100,20 +116,41 @@ const PizzaAdmin = () => {
   ];
 
   return (
-    <div ref={tableContRef} style={{ maxHeight: "100vh", overflow: "auto" }}>
+    <div
+      style={{
+        backgroundColor: "#1e1e1e",
+        padding: "2rem",
+        minHeight: "100vh",
+      }}
+    >
       <h2
         style={{
-          color: "rgb(234, 124, 105)",
-          padding: "10px",
-          fontSize: "50px",
+          color: "#ff7b25",
+          fontSize: "2.5rem",
+          marginBottom: "2rem",
+          paddingBottom: "1rem",
+          borderBottom: "2px solid #333",
         }}
       >
         Админ-панель <br />
         Пиццы
       </h2>
 
-      {/* 👇 Кнопка для добавления */}
-      <Button text="Добавить пиццу" onClick={() => setIsModalOpenCreate(true)} />
+      <Button
+        text="Добавить пиццу"
+        onClick={() => setIsModalOpenCreate(true)}
+        otherButtonStyles={{
+          backgroundColor: "#ff7b25",
+          color: "#121212",
+          padding: "0.8rem 1.5rem",
+          borderRadius: "8px",
+          fontWeight: "600",
+          border: "none",
+          cursor: "pointer",
+          transition: "all 0.3s ease",
+          marginBottom: "2rem",
+        }}
+      />
 
       {isOpenModalCreate && (
         <ModalWindow
@@ -121,34 +158,116 @@ const PizzaAdmin = () => {
           onClose={() => setIsModalOpenCreate(false)}
           size="large"
         >
-          <Input
-            type={TypesInput.TEXT}
-            initialValue={nameInput.value}
-            onChange={nameInput.handleChange}
-            placeholder="Название пиццы"
-          />
-          <Input
-            type={TypesInput.TEXT}
-            initialValue={descriptionInput.value}
-            onChange={descriptionInput.handleChange}
-            placeholder="Описание"
-          />
-          <Input
-            type={TypesInput.NUMBER}
-            initialValue={priceInput.value}
-            onChange={priceInput.handleChange}
-            placeholder="Цена в центах"
-          />
-          <Button text="Создать пиццу" onClick={handleCreatePizza} />
+          <div
+            style={{
+              backgroundColor: "#2a2a2a",
+              padding: "2.5rem",
+              borderRadius: "15px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.5rem",
+              maxWidth: "100%",
+            }}
+          >
+            <h3
+              style={{
+                color: "#ff7b25",
+                fontSize: "1.8rem",
+                marginBottom: "1rem",
+                textAlign: "center",
+              }}
+            >
+              Добавить новую пиццу
+            </h3>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+              }}
+            >
+              <label style={{ color: "#ccc", fontSize: "1rem" }}>
+                Название пиццы
+              </label>
+              <Input
+                type={TypesInput.TEXT}
+                initialValue={nameInput.value}
+                onChange={nameInput.handleChange}
+                placeholder="Введите название"
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+              }}
+            >
+              <label style={{ color: "#ccc", fontSize: "1rem" }}>
+                Описание
+              </label>
+              <Input
+                type={TypesInput.TEXT}
+                initialValue={descriptionInput.value}
+                onChange={descriptionInput.handleChange}
+                placeholder="Введите описание"
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+              }}
+            >
+              <label style={{ color: "#ccc", fontSize: "1rem" }}>
+                Цена (в центах)
+              </label>
+              <Input
+                type={TypesInput.NUMBER}
+                initialValue={priceInput.value}
+                onChange={priceInput.handleChange}
+                placeholder="Введите цену"
+              />
+            </div>
+            <Button
+              text="Создать пиццу"
+              onClick={handleCreatePizza}
+              otherButtonStyles={{
+                backgroundColor: "#ff7b25",
+                color: "#121212",
+                padding: "0.8rem",
+                borderRadius: "8px",
+                fontWeight: "600",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                fontSize: "1rem",
+              }}
+            />
+          </div>
         </ModalWindow>
       )}
 
-      {isLoading && <p>Загрузка...</p>}
+      {isLoading && (
+        <p
+          style={{
+            color: "#ff7b25",
+            textAlign: "center",
+            fontSize: "1.2rem",
+            marginTop: "2rem",
+          }}
+        >
+          Загрузка...
+        </p>
+      )}
+
       <div
         ref={tableContRef}
         style={{
           flex: 1,
-          overflowY: "scroll",
+          overflowY: "auto",
+          marginTop: "2rem",
         }}
       >
         {pizzas && <Table<Pizza> data={pizzas} columns={columns} rowKey="id" />}
@@ -163,45 +282,118 @@ const PizzaAdmin = () => {
           }}
           size="large"
         >
-          <UsersAdminCrud
-            data={selectedPizza}
-            renderField={() => {
-              const nameInput = useInput(selectedPizza.name);
-              const descriptionInput = useInput(selectedPizza.description);
-              const priceInput = useInput(selectedPizza.price_cents);
-
-              return (
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  <Input
-                    type={TypesInput.TEXT}
-                    initialValue={nameInput.value}
-                    onChange={nameInput.handleChange}
-                  />
-                  <Input
-                    type={TypesInput.TEXT}
-                    initialValue={descriptionInput.value}
-                    onChange={descriptionInput.handleChange}
-                  />
-                  <Input
-                    type={TypesInput.TEXT}
-                    initialValue={priceInput.value}
-                    onChange={priceInput.handleChange}
-                  />
-                  <Button
-                    text="Сохранить изменения"
-                    onClick={() =>
-                      handleSaveChanges({
-                        ...selectedPizza,
-                        name: String(nameInput.value),
-                        description: String(descriptionInput.value),
-                        price_cents: String(priceInput.value),
-                      })
-                    }
-                  />
-                </div>
-              );
+          <div
+            style={{
+              backgroundColor: "#2a2a2a",
+              padding: "2rem",
+              borderRadius: "12px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.5rem",
+              maxWidth: "600px",
+              margin: "0 auto",
             }}
-          />
+          >
+            <h3
+              style={{
+                color: "#ff7b25",
+                fontSize: "1.8rem",
+                marginBottom: "1rem",
+                textAlign: "center",
+              }}
+            >
+              Редактировать пиццу
+            </h3>
+            <UsersAdminCrud
+              data={selectedPizza}
+              renderField={() => {
+                const nameInput = useInput(selectedPizza.name);
+                const descriptionInput = useInput(selectedPizza.description);
+                const priceInput = useInput(selectedPizza.price_cents);
+
+                return (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1.5rem",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      <label style={{ color: "#ccc", fontSize: "1rem" }}>
+                        Название
+                      </label>
+                      <Input
+                        type={TypesInput.TEXT}
+                        initialValue={nameInput.value}
+                        onChange={nameInput.handleChange}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      <label style={{ color: "#ccc", fontSize: "1rem" }}>
+                        Описание
+                      </label>
+                      <Input
+                        type={TypesInput.TEXT}
+                        initialValue={descriptionInput.value}
+                        onChange={descriptionInput.handleChange}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      <label style={{ color: "#ccc", fontSize: "1rem" }}>
+                        Цена (в центах)
+                      </label>
+                      <Input
+                        type={TypesInput.TEXT}
+                        initialValue={priceInput.value}
+                        onChange={priceInput.handleChange}
+                      />
+                    </div>
+                    <Button
+                      text="Сохранить изменения"
+                      onClick={() =>
+                        handleSaveChanges({
+                          ...selectedPizza,
+                          name: String(nameInput.value),
+                          description: String(descriptionInput.value),
+                          price_cents: String(priceInput.value),
+                        })
+                      }
+                      otherButtonStyles={{
+                        backgroundColor: "#ff7b25",
+                        color: "#121212",
+                        padding: "0.8rem",
+                        borderRadius: "8px",
+                        fontWeight: "600",
+                        border: "none",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                        fontSize: "1rem",
+                      }}
+                    />
+                  </div>
+                );
+              }}
+            />
+          </div>
         </ModalWindow>
       )}
     </div>
