@@ -44,7 +44,7 @@ export const registerUser = createAsyncThunk<
         `${backendURL}/auth/register`,
         body,
         config
-      ).finally(() => console.log(body))
+      )
 
       return response.data;
     } catch (error: any) {

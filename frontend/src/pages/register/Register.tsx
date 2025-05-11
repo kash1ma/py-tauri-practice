@@ -16,7 +16,7 @@ interface RegisterFormData {
 }
 
 const RegisterScreen = () => {
-  const { loading, userInfo, error, success } = useSelector(
+  const { loading, userInfo, error, success, redirect } = useSelector(
     (state: RootState) => state.auth
   );
 
@@ -30,7 +30,7 @@ const RegisterScreen = () => {
   } = useForm<RegisterFormData>();
 
   useEffect(() => {
-    if (success) navigate("/login");
+    if (redirect) navigate("/login");
     if (userInfo) navigate("/pizzaList");
   }, [navigate, userInfo, success]);
 
@@ -164,7 +164,7 @@ const RegisterScreen = () => {
             <span className="button-loader"></span>
           ) : (
             'Зарегистрироваться'
-          )}
+          )}         
         </button>
 
         <div className="form-footer">

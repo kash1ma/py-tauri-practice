@@ -20,7 +20,7 @@ type RequstType = "post" | "get" | "patch" | "delete"| "put"
         response = await axios.get(url);
       }
       if (type === "post") {
-        response = await axios.post(url, body);
+        response = await axios.post(url, body).finally(() => console.log(body))
       }
       if (type === "patch") {
         console.log(body)

@@ -7,7 +7,7 @@ import UsersAdminCrud from "../../components/ModalWindow/ModalContent/UsersAdmin
 import Input from "../../ui/Input/Input";
 import { TypesInput } from "../../types/enums/InputEnums";
 import useInput from "../../hooks/useInput";
-import { setupListeners } from "@reduxjs/toolkit/query";
+import handleCloseModal from "../../helpers/closeModal";
 
 type User = {
   id: number;
@@ -27,6 +27,11 @@ const UserAdmin = () => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isOpenModalCreate, setIsOpenModalCreate] = useState(false)
 
+  const {value: password, handleChange: handleChangePassword} = useInput("")
+  const {value: username, handleChange: handleChangeUsername} = useInput("")
+  const {value: email, handleChange: handleChangeEmail} = useInput("")
+  const {value: phone, handleChange: handleChangePhone} = useInput("")
+  const {value: role, handleChange: handleChangeRole} = useInput("user")
 
   const handleSaveChanges = async (updatedUser: User) => {
     await sendRequset(
@@ -57,6 +62,14 @@ const UserAdmin = () => {
     await sendRequset(`http://localhost:8000/users/${user.id}`, "delete");
     await sendRequset("http://localhost:8000/users", "get");
   };
+
+
+
+  const handleCreateUser =  async () => {
+    await sendRequset("http://localhost:8000/users", "post", {email: email , phone: String(phone), username: username, role: String(role), password : String(password)})
+    handleCloseModal()
+    await sendRequset("http://localhost:8000/users", "get");
+  }
 
   const columns: Column<User>[] = [
     { key: "id", title: "ID", dataIndex: "id" },
@@ -101,7 +114,14 @@ const UserAdmin = () => {
       </h2>
       <Button onClick={() => setIsOpenModalCreate(true)} text="добавить пользователя"/>
         {isOpenModalCreate && (
-          <ModalWindow size="large" isOpen={isOpenModalCreate} onClose={() => setIsOpenModalCreate(false)}>asd</ModalWindow>
+          <ModalWindow size="large" isOpen={isOpenModalCreate} onClose={() => setIsOpenModalCreate(false)}>
+            <Input type={TypesInput.TEXT} onChange={handleChangePassword} initialValue={password} placeholder="Пароль"/>
+            <Input type={TypesInput.TEXT} onChange={handleChangeUsername} initialValue={username} placeholder="Имя"/>
+            <Input type={TypesInput.EMAIL} onChange={handleChangeEmail} initialValue={email} placeholder="Почта"/>
+            <Input type={TypesInput.NUMBER} onChange={handleChangePhone} initialValue={phone} placeholder="Телефон"/>
+            <Input type={TypesInput.TEXT} onChange={handleChangeRole} initialValue={role} placeholder="Роль"/>
+            <Button text="создать пользователя" onClick={handleCreateUser}/>
+          </ModalWindow>
         )}
       {isLoading && <p>Загрузка...</p>}
 
