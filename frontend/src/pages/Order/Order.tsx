@@ -1,12 +1,17 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../../app/store"
+import { selectCost } from "../../features/cart/cartSlice"
 
 const Order = () => {
 
-    const orederItems = useSelector((state: RootState) => state.cart.items)
+    const orderItems = useSelector((state: RootState) => state.cart.items)
+    const totalPrice = useSelector(selectCost)
 
   return (
-    <div>{orederItems.map((item) =>item.name)}</div>
+    <>
+    {totalPrice}
+    <div>{orderItems.map((item) =>item.name)} </div>
+    </>
   )
 }
 

@@ -1,5 +1,3 @@
-
-
 interface IEditProps<T> {
     data: T;
     renderField: (data: T) => JSX.Element;
