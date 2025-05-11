@@ -1,0 +1,94 @@
+/* Order.module.css */
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: #fff;
+  }
+  
+  .title {
+    color: #ff7b25;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .totalPrice {
+    font-size: 1.5rem;
+    color: #ff7b25;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .pizzaListTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+  }
+  
+  .pizzaList {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .pizzaItem {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    border-left: 4px solid #ff7b25;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .deliveryMessage {
+    font-size: 1.5rem;
+    color: #4CAF50;
+    text-align: center;
+    padding: 2rem;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+  
+  .inputContainer {
+    margin-bottom: 2rem;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #ff7b25;
+    color: #121212;
+    border: 1px solid black;
+    border-radius: 8px;
+
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #ff6a00;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    
+    .title {
+      font-size: 1.5rem;
+    }
+    
+    .totalPrice {
+      font-size: 1.3rem;
+    }
+  }
